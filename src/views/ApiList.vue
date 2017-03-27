@@ -2,16 +2,7 @@
 	<section>
 		<!--工具条-->
 		<el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
-			<el-form :inline="true" :model="filters">
-				<el-form-item>
-					<el-input v-model="filters.name" placeholder="接口名称"></el-input>
-				</el-form-item>
-				<el-form-item>
-					<el-button type="primary"><i class="el-icon-search"></i></el-button>
-				</el-form-item>
-				<el-form-item>
-					<el-button type="success"><i class="el-icon-plus"></i></el-button>
-				</el-form-item>
+			<el-form :inline="true">
 				<el-form-item>
 					<el-button type="warning" @click="getApi()">刷新</el-button>
 				</el-form-item>
@@ -39,7 +30,6 @@
 				</el-table-column>
 				<el-table-column label="操作" width="150">
 					<template scope="scope">
-						<el-button size="small" :disabled="scope.row.state===true"><i class="el-icon-edit"></i></el-button>
 						<el-button type="danger" size="small" :disabled="scope.row.state===true" @click="()=>{deleteApi(scope.row, scope.$index)}"><i class="el-icon-delete"></i></el-button>
 					</template>
 				</el-table-column>
@@ -49,13 +39,11 @@
 	</section>
 </template>
 <script>
-	import { getApiList, changeState, deleteApi } from '../api/api';
+	import { getApiList, changeState, deleteApi } from '../api/api'
+
 	export default {
 		data() {
 			return {
-				filters: {
-					name: ''
-				},
 				loading: false,
 				apis: []
 			}
@@ -73,7 +61,7 @@
 						item.state = res.data[i].state == 1;
 
 						let tmp = res.data[i].path.split('_');
-						item.name = tmp[2];
+						item.name = '/' + tmp[2];
 						item.version = tmp[3];
 						item.type = tmp[0];
 						item.method = tmp[1];
