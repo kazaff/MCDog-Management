@@ -2,6 +2,13 @@
 
 基于[vue-admin](https://github.com/taylorchen709/vue-admin)的UI设计。
 
+### 运行
+
+1. 下载项目源文件到本地
+2. 在该目录下执行`npm run dev`
+
+也可以执行`npm run build`，然后将`dist`文件夹下打包好的文件放在webserver的根目录。
+
 ### snapshot
 
 ![](https://github.com/kazaff/MCDog-Management/blob/master/docs/login.png)
